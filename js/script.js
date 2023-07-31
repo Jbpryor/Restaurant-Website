@@ -35,3 +35,14 @@ navLinks.forEach(link => {
         navLinks.forEach(link => link.classList.remove('active'));
     });
 });
+
+// Nav Open & Close
+const   body = document.querySelector('body'),
+        navContent = body.querySelector('.nav-content'),
+        navOpenBtn = body.querySelector('.navOpen-btn');
+
+if (navContent && navOpenBtn) {
+    navOpenBtn.addEventListener('click', () => {
+        navContent.classList.add('open');
+    })
+}

@@ -42,47 +42,6 @@ html {
     --tran-0-5: 0.5s;
 }
 
-/* Font for smaller screen sizes */
-
-@media screen and (max-width: 820px) {
-    :root {
-    --big-font: 3.5rem;
-    --medium-font: 1.7rem;
-    --h1-font: 2.4rem;
-    --h2-font: 2rem;
-    --h3-font: 1.8rem;
-    --h4-font: 1.6rem;
-    --normal-font: 1.4rem;
-    --small-font: 1.3rem;
-    --smaller-font: 1.2rem;   
-    }
-
-    .nav .nav-content {
-        display: block;
-        position: fixed;
-        top: 0;
-        right: 0;
-        max-width: 300px;
-        width: 100%;
-        height: 100%;
-        padding-top: 10rem;
-        z-index: var(--z-fixed);
-        box-shadow: 0 0 10px rgba(200, 200, 200, 0.5), inset 0 0 10px rgba(200, 200, 200, 0.5);
-        background: var(--black-color);
-    }
-
-    .nav-list {
-        flex-direction: column;
-        row-gap: 2.5rem;
-        font-size: var(--h4-font);
-    }
-
-    .bx-x:before {
-        display: none;
-    }
-
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -177,6 +136,7 @@ a {
     font-size: var(--big-font);
     font-weight: var(--font-semi-bold);
     text-transform: uppercase;
+    padding-top: 1rem;
 }
 
 .background-slider::before {
@@ -192,10 +152,10 @@ a {
 
 .nav-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
-    padding-left: 20rem;
 }
 
 .nav-list {
@@ -244,37 +204,35 @@ a {
     transform: scaleX(1);
 }
 
-.bx-x:before {
-    display: none;
-}
-
 .nav-link:hover {
     cursor: pointer;
     color: var(--primary-color-hover);
 }
 
-
-
-@media screen and (max-width: 900px) {
-    .nav {
-        padding-right: 8px;
-    }
-
-    .nav-content {
-        padding-left: 0;
-    }
-
-    .logo-content {
-        padding-left: 1rem;
-    }
-
-    .logo-icon {
-        font-size: 4rem;
-    }
+.navOpen-btn:before {
+    display: none;
+    font-size: 5rem;
 }
+
+.media-icons {
+    font-size: 2rem;
+    column-gap: 3rem;
+    padding-bottom: 5rem;
+}
+
+.media-icons a {
+    color: var(--text-color-dark);
+    transition: var(--tran-0-2);
+}
+
+.media-icons a:hover {
+    color: var(--primary-color);
+}
+
+
 @media screen and (max-width: 1100px) {
     .nav-content {
-        padding-left: 15px;
+        padding: 0;
     }
 
     .logo-content {
@@ -290,10 +248,100 @@ a {
     }
 }
 
+@media screen and (max-width: 900px) {
+    .nav {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .nav-content {
+        padding-left: 0;
+    }
+
+    .logo-content {
+        display: block;
+        align-items: center;
+        justify-content: center;
+        padding-bottom: 2rem;
+    }
+
+    .logo-icon {
+        font-size: 4rem;
+    }
+
+    .logo-text {
+        display: inline-block;
+        padding: 1rem;
+    }
+}
+
+@media screen and (max-width: 820px) {
+    :root {
+    --big-font: 3.5rem;
+    --medium-font: 1.7rem;
+    --h1-font: 2.4rem;
+    --h2-font: 2rem;
+    --h3-font: 1.8rem;
+    --h4-font: 1.6rem;
+    --normal-font: 1.4rem;
+    --small-font: 1.3rem;
+    --smaller-font: 1.2rem;   
+    }
+
+    .nav .nav-content {
+        display: flex;
+        position: fixed;
+        top: -100%;
+        right: 0; 
+        max-width: none;
+        width: 100%;
+        padding: 5rem 0;
+        z-index: var(--z-fixed);
+        box-shadow: 0 0 10px rgba(200, 200, 200, 0.5), inset 0 0 10px rgba(200, 200, 200, 0.5);
+        background: var(--black-color);
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 5rem;
+        transition: var(--tran-0-5);
+    }
+
+    .nav .nav-content.open {
+        top: 0rem;
+    }
+
+    .nav-list {
+        flex-direction: column;
+        row-gap: 3.5rem;
+        font-size: var(--h4-font);
+        order: 1;
+    }
+
+    .media-icons {
+
+        order: 2;
+    }
+
+    .navOpen-btn:before {
+        display: block;
+        content: '';
+        width: 20px;
+        height: 20px;
+        margin: 0 auto;
+    }
+
+    .navOpen-btn:hover {
+        cursor: pointer;
+    }
+
+}
+
 @media screen and (max-width: 500px) {
     .nav .nav-content {
         max-width: none;
         background: none;
+        box-shadow: none;
     }
 
     .logo-content {
@@ -303,4 +351,11 @@ a {
     .background-slider::before {
         background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 1) 90%);
     }
+
+    .navOpen-btn:before {
+        display: none;
+    }
 }
+
+
+
