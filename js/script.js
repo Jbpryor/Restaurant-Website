@@ -23,7 +23,13 @@ showNextImage();
 setInterval(showNextImage, 2500);
 
 // Nav Links Underline
-const navLinks = document.querySelectorAll('.nav-link');
+const   body = document.querySelector('body'),
+        navLinks = document.querySelectorAll('.nav-link'),
+        navContent = body.querySelector('.nav-content'),
+        navOpenBtn = body.querySelector('.navOpen-btn'),
+        sections = document.querySelectorAll('.section');
+        
+
 
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
@@ -36,13 +42,32 @@ navLinks.forEach(link => {
     });
 });
 
+
 // Nav Open & Close
-const   body = document.querySelector('body'),
-        navContent = body.querySelector('.nav-content'),
-        navOpenBtn = body.querySelector('.navOpen-btn');
 
 if (navContent && navOpenBtn) {
     navOpenBtn.addEventListener('click', () => {
         navContent.classList.add('open');
     })
 }
+
+
+// Active Page Transition
+
+const PageTransitions = () => {
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const targetSectionId = link.dataset.target;
+            const targetSection = document.getElementById(targetSectionId);
+
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+            targetSection.classList.add('active');
+        });
+    });
+};
+
+PageTransitions();

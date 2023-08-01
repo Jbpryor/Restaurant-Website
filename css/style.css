@@ -33,7 +33,7 @@ html {
     --section-bg: #e3e0e0;
 
     /* Z-index */
-    --z-overlay: 10;
+    --z-overlay: -10;
     --z-fixed: 100;
 
     /* Transitions */
@@ -70,9 +70,16 @@ a {
     text-decoration: none;
 }
 
+
+
 /* Reuseable CSS */
+
 .section {
-    padding: 7rem 2rem;
+    display: none;
+}
+
+.section.active {
+    display: block;
 }
 
 .container {
@@ -87,23 +94,20 @@ a {
     column-gap: 0.6rem;
 }
 
+
+
 /* Header */
 
 .header {
-    position: relative;
-    height: 100vh;
+    position: fixed;
+    height: 15rem;
     width: 100%;
+    top: 0;
+    z-index: var(--z-fixed);
 }
 
-.background-slider {
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    z-index: -1;
-}
+
+/* Nav */
 
 .nav {
     display: flex;
@@ -230,6 +234,26 @@ a {
 }
 
 
+
+/* Home */
+
+.home {
+    height: 100vh;
+    width: 100%;
+}
+
+.background-slider {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    top: 0;
+    z-index: var(--z-overlay);
+}
+
+
 @media screen and (max-width: 1100px) {
     .nav-content {
         padding: 0;
@@ -257,6 +281,15 @@ a {
 
     .nav-content {
         padding-left: 0;
+    }
+
+    .nav-list {
+        order: 1;
+    }
+
+    .media-icons {
+        order: 2;
+        padding-top: 5rem;
     }
 
     .logo-content {
@@ -315,12 +348,10 @@ a {
         flex-direction: column;
         row-gap: 3.5rem;
         font-size: var(--h4-font);
-        order: 1;
     }
 
     .media-icons {
-
-        order: 2;
+        padding: 0;
     }
 
     .navOpen-btn:before {
