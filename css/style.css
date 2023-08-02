@@ -58,6 +58,7 @@ input {
 }
 
 body {
+    min-height: 100vh;
     overflow: hidden;
     background-color: var(--black-color);
 }
@@ -71,11 +72,11 @@ a {
 }
 
 
-
 /* Reuseable CSS */
 
 .section {
     display: none;
+    height: 100vh;
 }
 
 .section.active {
@@ -94,11 +95,24 @@ a {
     column-gap: 0.6rem;
 }
 
+.sticky {
+    position: fixed;
+    top: 0;
+    padding-top: 5rem;
+    background-color: var(--black-color);
+    z-index: 100;
+  }
+
+  .pad {
+    padding: 5rem;
+    width: 120%;
+  }
+
 
 /* Header */
 
 .header {
-    position: fixed;
+    position: flex;
     height: 15rem;
     width: 100%;
     top: 0;
@@ -165,7 +179,11 @@ a {
 
 .nav-list {
     list-style: none;
-    display: flex;
+    display: sticky;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+
 }
 
 .nav-list li {
@@ -241,6 +259,7 @@ a {
     display: none;
 }
 
+
 /* Home */
 
 .home {
@@ -273,8 +292,8 @@ a {
 /* Menus */
 
 .menus {
-    height: 60vh;
-    overflow: auto;
+    height: 100vh;
+    margin-top: 30rem;
 }
 
 .menus-content {
@@ -344,6 +363,7 @@ a {
 
 
 
+
 @media screen and (max-width: 1100px) {
     .nav-content {
         padding: 0;
@@ -363,6 +383,11 @@ a {
 }
 
 @media screen and (max-width: 900px) {
+    .sticky {
+        left: 0;
+        width: 100%;
+      }
+
     .nav {
         display: grid;
         align-items: center;

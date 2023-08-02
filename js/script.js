@@ -11,7 +11,7 @@ const imageURLs = [
 
 let currentImageIndex = 0;
 
-const showNextImage = () => {
+function showNextImage() {
     const backgroundSlider = document.querySelector('.background-slider');
     backgroundSlider.style.backgroundImage = `url(${baseURL}${imageURLs[currentImageIndex]})`;
 
@@ -25,7 +25,9 @@ setInterval(showNextImage, 2500);
 // Nav Links Underline
 
 const   body = document.querySelector('body'),
+        header = document.querySelector('.header'),
         navLinks = document.querySelectorAll('.nav-link'),
+        navList = document.querySelector('.nav-list'),
         navContent = body.querySelector('.nav-content'),
         navOpenBtn = body.querySelector('.navOpen-btn'),
         orderBtn = body.querySelector('.orderBtn-2'),
@@ -54,7 +56,7 @@ navLinks.forEach(link => {
 
 // Hide/Show Btn and Logo Display
 
-const updateBtnAndLogoDisplay = () => {
+function updateBtnAndLogoDisplay() {
     if (window.innerWidth > 820 || navContent.classList.contains('open')) {
         navOpenBtn.style.display = 'none';
         orderBtn.style.display = 'none';
@@ -95,7 +97,7 @@ if (navContent && navOpenBtn) {
 
 // Active Page Transition
 
-const PageTransitions = () => {
+function PageTransitions() {
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -112,3 +114,60 @@ const PageTransitions = () => {
 };
 
 PageTransitions();
+
+// Overflow for home off
+
+const homeSection = document.querySelector('#home');
+
+function setBodyOverflow() {
+        const isHomeActive = homeSection.classList.contains('active');
+        document.body.style.overflow = isHomeActive ? 'hidden' : 'auto';
+    }
+
+document.addEventListener('DOMContentLoaded', setBodyOverflow);
+document.addEventListener('click', setBodyOverflow);
+
+// Sticky Nav Links
+
+function stickyNavLinks() {
+    const headerHeight = header.clientHeight;
+
+if (window.innerWidth > 900) {
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+    
+        if (scrollY >= headerHeight - 60) {
+            navList.classList.add('sticky');
+        } else {
+            navList.classList.remove('sticky');
+        }
+        if (scrollY >= 300) {
+            navList.classList.add('pad');
+        } else {
+            navList.classList.remove('pad');
+        }
+    });
+} else if (window.innerWidth <= 900 && window.innerWidth > 820){
+    window.addEventListener('scroll', () => {
+        const scrollY = window.scrollY;
+    
+        if (scrollY >= headerHeight + 140) {
+            navList.classList.add('sticky');
+        } else {
+            navList.classList.remove('sticky');
+        }
+    });
+} else if (window.innerWidth <= 820) {
+    navList.classList.remove('sticky');
+}
+};
+
+stickyNavLinks();
+
+// window.addEventListener('resize', () => {
+//     updateBtnAndLogoDisplay();
+//     stickyNavLinks();
+// })
+
+
+// trying to figure out why the nav bar gets triggered on resize at < 820px
