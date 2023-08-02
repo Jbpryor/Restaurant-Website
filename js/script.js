@@ -29,7 +29,8 @@ const   body = document.querySelector('body'),
         navContent = body.querySelector('.nav-content'),
         navOpenBtn = body.querySelector('.navOpen-btn'),
         orderBtn = body.querySelector('.orderBtn-2'),
-        sections = document.querySelectorAll('.section');
+        sections = document.querySelectorAll('.section'),
+        logoContent = document.querySelector('.logo-content');
         
 
 
@@ -40,7 +41,7 @@ navLinks.forEach(link => {
 
         if (navContent.classList.contains('open')) {
             navContent.classList.remove('open');
-            updateBtnDisplay();
+            updateBtnAndLogoDisplay();
         }
     });
 
@@ -51,28 +52,33 @@ navLinks.forEach(link => {
     });
 });
 
-// Hide/Show Btn Display
+// Hide/Show Btn and Logo Display
 
-const updateBtnDisplay = () => {
-    if (window.innerWidth > 820) {
+const updateBtnAndLogoDisplay = () => {
+    if (window.innerWidth > 820 || navContent.classList.contains('open')) {
         navOpenBtn.style.display = 'none';
         orderBtn.style.display = 'none';
     } else {
         navOpenBtn.style.display = 'block';
         orderBtn.style.display = 'block';
     }
+    if (window.innerWidth <= 500) {
+        logoContent.style.display = 'none';
+    } else {
+        logoContent.style.display = 'flex';
+    }
 }
 
-updateBtnDisplay();
+updateBtnAndLogoDisplay();
 
 window.addEventListener('resize', () => {
-    updateBtnDisplay();
+    updateBtnAndLogoDisplay();
 })
 
 document.addEventListener('click', (e) => {
     if (!navContent.contains(e.target) && !navOpenBtn.contains(e.target)) {
         navContent.classList.remove('open');
-        updateBtnDisplay();
+        updateBtnAndLogoDisplay();
     }
 });
 
