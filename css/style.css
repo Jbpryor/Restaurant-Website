@@ -105,7 +105,7 @@ a {
 
   .pad {
     padding: 5rem;
-    width: 120%;
+    width: 140%;
   }
 
 
@@ -304,7 +304,6 @@ a {
 }
 
 .menu {
-    grid-column: 2 / span 1;
     position: relative;
     background-color: var(--text-color-dark);
     border-radius: 5px;
@@ -331,37 +330,58 @@ a {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     filter: grayscale(100%);
+    cursor: pointer;
     transition: all .4s ease-in-out;
 }
 
 .menu-text {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(3, 1fr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
     margin-top: -7px;
     padding: 1.1rem;
     border-top: 8px solid var(--primary-color);
 }
 
-.menu-text h4 {
+.menu-text h3 {
     grid-column: 1 / span 3;
-    font-size: 1.5rem;
+    color: var(--primary-color);
+    font-size: 2rem;
     margin-bottom: .7rem;
     transition: all .4s ease-in-out;
     cursor: pointer;
 }
 
-.menu-text h4:hover {
+.menu-text h3:hover {
     color: var(--primary-color-hover);
 }
 
 .menu-text p {
-    color: var(--border-color);
-    line-height: 2rem;
+    font-size: 1.75rem;
+    color: var(--black-color);
+    line-height: 2.25rem;
     padding-bottom: 1rem;
 }
 
+.full-screen-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    cursor: pointer;
+}
 
+.full-screen-image {
+    max-width: 100%;
+    max-height: 100%;
+}
 
 
 @media screen and (max-width: 1100px) {
