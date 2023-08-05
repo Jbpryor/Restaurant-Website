@@ -411,6 +411,7 @@ a {
 
 .catering-title {
     font-size: var(--h2-font);
+    text-align: center;
 }
 
 .catering-text {
