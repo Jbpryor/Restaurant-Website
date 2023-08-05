@@ -26,13 +26,13 @@ setInterval(showNextImage, 2500);
 
 const   body = document.querySelector('body'),
         header = document.querySelector('.header'),
+        sections = document.querySelectorAll('.section'),
         homeSection = document.querySelector('.home'),
         navLinks = document.querySelectorAll('.nav-link'),
         navList = document.querySelector('.nav-list'),
         navContent = body.querySelector('.nav-content'),
         navOpenBtn = body.querySelector('.navOpen-btn'),
-        orderBtn = body.querySelector('.orderBtn-2'),
-        sections = document.querySelectorAll('.section'),
+        orderBtn = body.querySelector('.orderBtn-2'),        
         logoContent = document.querySelector('.logo-content');
         
 
@@ -54,6 +54,30 @@ navLinks.forEach(link => {
         }        
     });
 });
+
+// Update Section Display
+
+function updateSectionDisplay() {
+    sections.forEach(section => {
+        const isSectionActive = section.classList.contains('active');
+        if (isSectionActive) {
+            section.style.display = '';
+        } else {
+            section.style.display = 'none';
+        }      
+    });
+}
+
+document.addEventListener('DOMContentLoaded', updateSectionDisplay);
+
+sections.forEach(section => {
+    const observer = new MutationObserver(updateSectionDisplay);
+    observer.observe(section, { attributes: true });
+})
+
+
+
+
 
 // Hide/Show Btn and Logo Display
 
@@ -98,7 +122,7 @@ if (navContent && navOpenBtn) {
 
 // Active Page Transition
 
-function PageTransitions() {
+function pageTransitions() {
     navLinks.forEach(link => {
         link.addEventListener('click', (event) => {
             event.preventDefault();
@@ -115,7 +139,8 @@ function PageTransitions() {
     });
 };
 
-PageTransitions();
+pageTransitions();
+
 
 // Overflow for home off
 

@@ -75,12 +75,17 @@ a {
 /* Reuseable CSS */
 
 .section {
+    opacity: 0;
+    pointer-events: none;
     display: none;
-    height: 100vh;
 }
 
 .section.active {
+    opacity: 1;
+    pointer-events: auto;
+    height: 100vh;
     display: block;
+    margin-top: 27rem;
 }
 
 .container {
@@ -293,19 +298,27 @@ a {
 
 .menus {
     height: 100vh;
-    margin-top: 30rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .menus-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(3, 400px);
+    gap: 3rem;
+    align-items: center;
+    justify-content: center;
     margin-top: 3rem;
 }
 
 .menu {
     position: relative;
-    background-color: var(--text-color-dark);
+    justify-content: center;
+    width: 300px;
+    margin: 3rem;
+    background-color: var(--primary-color);
     border-radius: 5px;
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.1);
     transition: all .4s ease-in-out;
@@ -318,7 +331,7 @@ a {
 }
 
 .menu:hover img {
-    filter: grayscale(0);
+    filter: brightness(100%);
     transform: scale(1.1);
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.8);
 }
@@ -327,9 +340,10 @@ a {
     width: 100%;
     height: 300px;
     object-fit: cover;
+    object-position: 50% 0%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
-    filter: grayscale(100%);
+    filter: brightness(80%);
     cursor: pointer;
     transition: all .4s ease-in-out;
 }
@@ -341,25 +355,21 @@ a {
     gap: 2rem;
     margin-top: -7px;
     padding: 1.1rem;
-    border-top: 8px solid var(--primary-color);
+    border-top: 8px solid var(--primary-color-hover);
 }
 
 .menu-text h3 {
     grid-column: 1 / span 3;
-    color: var(--primary-color);
-    font-size: 2rem;
+    color: var(--text-color);
+    font-size: var(--h3-font);
     margin-bottom: .7rem;
     transition: all .4s ease-in-out;
-    cursor: pointer;
 }
 
-.menu-text h3:hover {
-    color: var(--primary-color-hover);
-}
-
-.menu-text p {
-    font-size: 1.75rem;
+.menu-text h4 {
+    font-size: var(--p-font);
     color: var(--black-color);
+    font-weight: var(--font-semi-bold);
     line-height: 2.25rem;
     padding-bottom: 1rem;
 }
@@ -381,6 +391,47 @@ a {
 .full-screen-image {
     max-width: 100%;
     max-height: 100%;
+    object-fit: contain;
+    overflow: auto;
+    position: fixed;
+}
+
+
+/* Catering */
+
+.catering {
+    display: flex;
+    flex-direction: column;
+}
+
+.catering-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.catering-title {
+    font-size: var(--h2-font);
+}
+
+.catering-text {
+    font-size: var(--p-font);
+    padding: 5rem 10rem;
+    text-align: center;
+}
+
+.catering-contact {
+    font-size: var(--h3-font);
+    padding: 5rem 15rem;
+    text-align: center;
+}
+
+.catering span {
+    color: var(--primary-color-hover)
+}
+
+.catering .link-span:hover {
+    color: var(--primary-color);
+    cursor: pointer;
 }
 
 
