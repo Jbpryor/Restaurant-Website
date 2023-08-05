@@ -14,6 +14,7 @@ html {
     --h2-font: 2.4rem;
     --h3-font: 2rem;
     --h4-font: 1.8rem;
+    --p-font: 2rem;
     --normal-font: 1.6rem;
     --small-font: 1.4rem;
     --smaller-font: 1.3rem;
@@ -412,6 +413,7 @@ a {
 .catering-title {
     font-size: var(--h2-font);
     text-align: center;
+    margin-top: 4rem;
 }
 
 .catering-text {
@@ -434,6 +436,43 @@ a {
     color: var(--primary-color);
     cursor: pointer;
 }
+
+
+/* About */
+
+.about-content {
+    /* column-gap: 5rem; */
+    align-items: flex-start;
+    padding: 0 7rem;
+}
+
+.about-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-content img {
+    height: 50rem;
+    width: 50rem;
+    object-fit: cover;
+    padding: 2rem;
+}
+
+.about p {
+    padding: 3rem 5rem;
+    font-size: var(--p-font);
+}
+
+
 
 
 @media screen and (max-width: 1100px) {
@@ -504,6 +543,7 @@ a {
     --h2-font: 2rem;
     --h3-font: 1.8rem;
     --h4-font: 1.6rem;
+    --p-font: 1.8rem;
     --normal-font: 1.6rem;
     --small-font: 1.3rem;
     --smaller-font: 1.2rem;   
