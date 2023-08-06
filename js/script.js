@@ -1,15 +1,9 @@
 // Image Slider
 
-const baseURL = 'images/'
-const imageURLs = [
-    'Dessert.jpg',
-    'Entree.jpg',
-    'Salad.jpg',
-    'Appetizer.jpg',
-    'Soup.jpg'
-];
-
+const baseURL = 'images/';
+const imageURLs = ['Dessert.jpg', 'Entree.jpg', 'Salad.jpg', 'Appetizer.jpg', 'Soup.jpg'];
 let currentImageIndex = 0;
+let intervalId;
 
 function showNextImage() {
     const backgroundSlider = document.querySelector('.background-slider');
@@ -20,7 +14,55 @@ function showNextImage() {
 
 showNextImage();
 
-setInterval(showNextImage, 2500);
+function startImageSlider() {
+    intervalId = setInterval(showNextImage, 2500);
+}
+
+function stopImageSlider() {
+    clearInterval(intervalId);
+}
+
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    homeSection.classList.add('active');
+
+    const isHomeActive = homeSection.classList.contains('active');
+
+    if (isHomeActive) {
+        startImageSlider();
+    } else {
+        stopImageSlider();
+    }
+
+    document.addEventListener('click', () => {
+        const activeSection = document.querySelector('.section.active');
+
+        if (activeSection === homeSection) {
+            startImageSlider();
+        } else {
+            stopImageSlider();
+        }
+    });
+});
+
+
+// Swiper function
+
+var swiper = new Swiper(".mySwiper", {
+    slidesPerView: 1,
+    grabCursor: true,
+    loop: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+    navigation: {
+      nextEl: ".swiper-button-next",
+      prevEl: ".swiper-button-prev",
+    },
+});
+
 
 // Nav Links Underline
 
@@ -74,9 +116,6 @@ sections.forEach(section => {
     const observer = new MutationObserver(updateSectionDisplay);
     observer.observe(section, { attributes: true });
 })
-
-
-
 
 
 // Hide/Show Btn and Logo Display
@@ -134,6 +173,7 @@ function pageTransitions() {
                 section.classList.remove('active');
             });
             targetSection.classList.add('active');
+            scrollToTop();
             updateNavBackground();
         });
     });
@@ -152,6 +192,14 @@ function setBodyOverflow() {
 document.addEventListener('DOMContentLoaded', setBodyOverflow);
 document.addEventListener('click', setBodyOverflow);
 
+// Is Home Active Function
+
+function isActiveSectionHome() {
+    const activeSection = document.querySelector('.section.active')
+    return activeSection === homeSection;
+}
+
+
 // Sticky Nav Links
 
 let scrollHandler;
@@ -166,37 +214,37 @@ function stickyNavLinks() {
     scrollHandler = () => {
         const scrollY = window.scrollY;
 
-
-        if (window.innerWidth > 900) {
-            if (scrollY >= headerHeight - 60) {
-                navList.classList.add('sticky');
-            } else {
-                navList.classList.remove('sticky');
-            }
-            if (scrollY >= 300) {
-                navList.classList.add('pad');
-            } else {
-                navList.classList.remove('pad');
-            }
-        } else if (window.innerWidth <= 900 && window.innerWidth > 820) {
-            if (scrollY >= headerHeight + 140) {
-                navList.classList.add('sticky');
-            } else {
-                navList.classList.remove('sticky');
-            }
-            if (scrollY >= 300) {
-                navList.classList.add('pad');
-            } else {
-                navList.classList.remove('pad');
-            }
-        } else if (window.innerWidth <= 820) {
-                navList.classList.remove('sticky');
-                if (!navContent.classList.contains('open')) {
-                    navList.classList.add('pad');
-                    navList.classList.add('flex'); 
+        if (!isActiveSectionHome()) {
+            if (window.innerWidth > 900) {
+                if (scrollY >= headerHeight - 60) {
+                    navList.classList.add('sticky');
+                } else {
+                    navList.classList.remove('sticky');
                 }
-
-        };
+                if (scrollY >= 300) {
+                    navList.classList.add('pad');
+                } else {
+                    navList.classList.remove('pad');
+                }
+            } else if (window.innerWidth <= 900 && window.innerWidth > 820) {
+                if (scrollY >= headerHeight + 140) {
+                    navList.classList.add('sticky');
+                } else {
+                    navList.classList.remove('sticky');
+                }
+                if (scrollY >= 300) {
+                    navList.classList.add('pad');
+                } else {
+                    navList.classList.remove('pad');
+                }
+            } else if (window.innerWidth <= 820) {
+                    navList.classList.remove('sticky');
+                    if (!navContent.classList.contains('open')) {
+                        navList.classList.add('pad');
+                        navList.classList.add('flex'); 
+                    }
+            }
+        }
     };
     window.addEventListener('scroll', scrollHandler);
 };
@@ -205,7 +253,7 @@ stickyNavLinks();
 
 window.addEventListener('resize', () => {
     updateBtnAndLogoDisplay();
-    stickyNavLinks;
+    stickyNavLinks();
 });
 
 
@@ -268,3 +316,13 @@ const fullScreenMenus = document.querySelectorAll('.full-screen-img');
 fullScreenMenus.forEach(menu => {
     menu.addEventListener('click', openFullScreenMenu);
 });
+
+// Function for scroll to top whenever the section changes
+
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'auto'
+    });
+}

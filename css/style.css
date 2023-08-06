@@ -41,6 +41,7 @@ html {
     --tran-0-2: 0.2s;
     --tran-0-3: 0.3s;
     --tran-0-5: 0.5s;
+
 }
 
 * {
@@ -59,8 +60,8 @@ input {
 }
 
 body {
-    min-height: 100vh;
-    overflow: hidden;
+    /* min-height: 100vh; */
+    overflow-x: hidden;
     background-color: var(--black-color);
 }
 
@@ -72,22 +73,30 @@ a {
     text-decoration: none;
 }
 
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 
 /* Reuseable CSS */
 
 .section {
     opacity: 0;
     pointer-events: none;
-    display: none;
+    display: flex;
 }
 
 .section.active {
     opacity: 1;
     pointer-events: auto;
     height: 100vh;
-    display: block;
+    display: flex;
     margin-top: 27rem;
 }
+
+section#photos {}
 
 .container {
     width: 100%;
@@ -107,12 +116,12 @@ a {
     padding-top: 5rem;
     background-color: var(--black-color);
     z-index: 100;
-  }
+}
 
-  .pad {
+.pad {
     padding: 5rem;
     width: 140%;
-  }
+}
 
 
 /* Header */
@@ -185,7 +194,6 @@ a {
 
 .nav-list {
     list-style: none;
-    display: sticky;
     align-items: center;
     justify-content: center;
     top: 0;
@@ -471,6 +479,35 @@ a {
     padding: 3rem 5rem;
     font-size: var(--p-font);
 }
+
+.about span {
+    color: var(--primary-color-hover);
+}
+
+
+/* Photos */
+
+.photos.section {
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper {
+    height: 65rem;
+    width: 65rem;
+}
+
+
+.swiper-slide {
+    height: 100%;
+    width: 100%;
+}
+
+.swiper img {
+    height: 100%;
+    width: 100%;
+}
+
 
 
 
