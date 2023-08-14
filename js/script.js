@@ -5,6 +5,18 @@ const imageURLs = ['Dessert.jpg', 'Entree.jpg', 'Salad.jpg', 'Appetizer.jpg', 'S
 let currentImageIndex = 0;
 let intervalId;
 
+const   body = document.querySelector('body'),
+        header = document.querySelector('.header'),
+        sections = document.querySelectorAll('.section'),
+        homeSection = document.querySelector('.home'),
+        navLinks = document.querySelectorAll('.nav-link'),
+        navList = document.querySelector('.nav-list'),
+        navContent = body.querySelector('.nav-content'),
+        navOpenBtn = body.querySelector('.navOpen-btn'),
+        orderBtn = body.querySelector('.orderBtn-2'),        
+        logoContent = document.querySelector('.logo-content'),
+        bxMenu = document.querySelector('.bx-menu');
+
 function showNextImage() {
     const backgroundSlider = document.querySelector('.background-slider');
     backgroundSlider.style.backgroundImage = `url(${baseURL}${imageURLs[currentImageIndex]})`;
@@ -23,27 +35,28 @@ function stopImageSlider() {
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-
-    homeSection.classList.add('active');
-
+window.onload = () => {
     const isHomeActive = homeSection.classList.contains('active');
 
     if (isHomeActive) {
         startImageSlider();
-    } else {
+        if (window.innerWidth <= 500) {
+            logoContent.style.display = 'block';
+            bxMenu.style.display = 'block';
+            orderBtn.style.display = 'block'
+        }
+    }
+};
+
+document.addEventListener('click', (event) => {
+    const clickedSection = event.target.closest('.section');
+
+    if (clickedSection === homeSection) {
+        startImageSlider();
+    }
+    if (clickedSection !== homeSection) {
         stopImageSlider();
     }
-
-    document.addEventListener('click', () => {
-        const activeSection = document.querySelector('.section.active');
-
-        if (activeSection === homeSection) {
-            startImageSlider();
-        } else {
-            stopImageSlider();
-        }
-    });
 });
 
 
@@ -66,16 +79,16 @@ var swiper = new Swiper(".mySwiper", {
 
 // Nav Links Underline
 
-const   body = document.querySelector('body'),
-        header = document.querySelector('.header'),
-        sections = document.querySelectorAll('.section'),
-        homeSection = document.querySelector('.home'),
-        navLinks = document.querySelectorAll('.nav-link'),
-        navList = document.querySelector('.nav-list'),
-        navContent = body.querySelector('.nav-content'),
-        navOpenBtn = body.querySelector('.navOpen-btn'),
-        orderBtn = body.querySelector('.orderBtn-2'),        
-        logoContent = document.querySelector('.logo-content');
+// const   body = document.querySelector('body'),
+//         header = document.querySelector('.header'),
+//         sections = document.querySelectorAll('.section'),
+//         homeSection = document.querySelector('.home'),
+//         navLinks = document.querySelectorAll('.nav-link'),
+//         navList = document.querySelector('.nav-list'),
+//         navContent = body.querySelector('.nav-content'),
+//         navOpenBtn = body.querySelector('.navOpen-btn'),
+//         orderBtn = body.querySelector('.orderBtn-2'),        
+//         logoContent = document.querySelector('.logo-content');
         
 
 
@@ -155,6 +168,7 @@ if (navContent && navOpenBtn) {
         navContent.classList.add('open');
         navOpenBtn.style.display = 'none';
         orderBtn.style.display = 'none';
+        logoContent.style.display = 'none';
     });
 }
 

@@ -654,10 +654,6 @@ section#photos {}
         padding-top: 10rem;
     }
 
-    /* .logo-content {
-        display: none;
-    } */
-
     .background-slider::before {
         background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 1) 90%);
     }
