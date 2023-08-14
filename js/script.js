@@ -76,21 +76,7 @@ var swiper = new Swiper(".mySwiper", {
     },
 });
 
-
 // Nav Links Underline
-
-// const   body = document.querySelector('body'),
-//         header = document.querySelector('.header'),
-//         sections = document.querySelectorAll('.section'),
-//         homeSection = document.querySelector('.home'),
-//         navLinks = document.querySelectorAll('.nav-link'),
-//         navList = document.querySelector('.nav-list'),
-//         navContent = body.querySelector('.nav-content'),
-//         navOpenBtn = body.querySelector('.navOpen-btn'),
-//         orderBtn = body.querySelector('.orderBtn-2'),        
-//         logoContent = document.querySelector('.logo-content');
-        
-
 
 navLinks.forEach(link => {
     link.addEventListener('click', (event) => {
