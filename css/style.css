@@ -96,8 +96,6 @@ img {
     margin-top: 27rem;
 }
 
-section#photos {}
-
 .container {
     width: 100%;
     margin: 0 auto;
@@ -127,7 +125,6 @@ section#photos {}
 /* Header */
 
 .header {
-    position: flex;
     height: 15rem;
     width: 100%;
     top: 0;
@@ -306,8 +303,6 @@ section#photos {}
 /* Menus */
 
 .menus {
-    height: 100vh;
-    display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -315,7 +310,7 @@ section#photos {}
 
 .menus-content {
     display: grid;
-    grid-template-columns: repeat(3, 400px);
+    grid-template-columns: repeat(3, minmax(400px, 1fr));
     gap: 3rem;
     align-items: center;
     justify-content: center;
@@ -449,7 +444,6 @@ section#photos {}
 /* About */
 
 .about-content {
-    /* column-gap: 5rem; */
     align-items: flex-start;
     padding: 0 7rem;
 }
@@ -528,6 +522,18 @@ section#photos {}
     .logo-text {
         font-size: 3rem;
     }
+
+    .catering {
+        padding-top: 3rem;
+        align-items: center;
+        align-content: center;
+    }
+
+    .menus-content {
+        height: 100vh;
+        grid-template-columns: repeat(2, minmax(400px, 1fr));
+        padding: 3rem;
+    }
 }
 
 @media screen and (max-width: 900px) {
@@ -570,6 +576,10 @@ section#photos {}
         display: inline-block;
         padding: 1rem;
     }
+
+    .menus-content {
+        gap: 2rem;
+    }
 }
 
 @media screen and (max-width: 820px) {
@@ -589,7 +599,7 @@ section#photos {}
     .nav .nav-content {
         display: flex;
         position: fixed;
-        top: -100%;
+        top: -150%;
         right: 0; 
         max-width: none;
         width: 100%;
@@ -614,7 +624,12 @@ section#photos {}
         font-size: var(--h4-font);
     }
 
+    .flex {
+        display: grid;
+    }
+
     .media-icons {
+        display: flex;
         font-size: 2rem;
         padding: 0;
     }
@@ -644,6 +659,27 @@ section#photos {}
         display: block;
     }
 
+    .menus,
+    .catering {
+        overflow-x: hidden;
+    }
+
+    .menus-content {  
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    };
+
+    .about-content {
+        align-items: center;
+        padding: 0 1rem;
+    }
+
+    .about-content img {
+        padding-top: 5rem;
+        height: auto;
+        width: 100%;
+    }
+    
 }
 
 @media screen and (max-width: 500px) {
@@ -651,7 +687,6 @@ section#photos {}
         max-width: none;
         background: none;
         box-shadow: none;
-        padding-top: 10rem;
     }
 
     .background-slider::before {
@@ -661,6 +696,10 @@ section#photos {}
     .navOpen-btn:before {
         align-items: center;
         justify-content: center;
+    }
+
+    .menus-content {
+        gap: none;
     }
 
 }

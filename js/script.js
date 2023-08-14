@@ -36,6 +36,8 @@ function stopImageSlider() {
 
 
 window.onload = () => {
+    updateBtnAndLogoDisplay();
+    
     const isHomeActive = homeSection.classList.contains('active');
 
     if (isHomeActive) {
@@ -128,7 +130,7 @@ function updateBtnAndLogoDisplay() {
         orderBtn.style.display = 'block';
     }
     if (window.innerWidth <= 500) {
-        logoContent.style.display = 'none';
+        logoContent.style.display = 'flex';
     } else {
         logoContent.style.display = 'flex';
     }
